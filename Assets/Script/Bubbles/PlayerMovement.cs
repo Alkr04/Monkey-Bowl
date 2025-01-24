@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     WishedDirectionHandler wishedDirectionHandler;
-    [SerializeField] float weight;
+    [SerializeField] float weight = 1;
 
     private void Awake()
     {
@@ -20,6 +20,6 @@ public class PlayerMovement : MonoBehaviour
     private void HandleInput()
     {
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        wishedDirectionHandler.AddDirection(direction, weight);
+        wishedDirectionHandler.AddDirection(direction.normalized, weight);
     }
 }
