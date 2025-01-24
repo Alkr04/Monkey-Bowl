@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+  handleInput: 0
 --- !u!1 &2116645901
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +365,7 @@ GameObject:
   - component: {fileID: 2116645903}
   - component: {fileID: 2116645902}
   - component: {fileID: 2116645905}
+  - component: {fileID: 2116645906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -489,6 +491,20 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &2116645906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116645901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cbddad7a707c1469385b9dd95f189b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToPlayer: 6.59
+  cameraLookAhead: -0.71
 --- !u!1001 &5031215681259292490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -497,6 +513,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1702464492422872145, guid: 8826c2d49ee73f245a3ca7725c24a3e6,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2892985411402571582, guid: 8826c2d49ee73f245a3ca7725c24a3e6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -505,7 +526,7 @@ PrefabInstance:
     - target: {fileID: 2892985411402571582, guid: 8826c2d49ee73f245a3ca7725c24a3e6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.41
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2892985411402571582, guid: 8826c2d49ee73f245a3ca7725c24a3e6,
         type: 3}

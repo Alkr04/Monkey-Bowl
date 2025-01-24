@@ -9,6 +9,8 @@ public class WishedDirectionHandler : MonoBehaviour
     List<Vector3> directions = new List<Vector3>();
     List<float> weights = new List<float>();
 
+    WishedDirectionHandler instance;
+
     private void Awake()
     {
         bubbleMovement = GetComponent<BubbleMovement>();
@@ -25,7 +27,6 @@ public class WishedDirectionHandler : MonoBehaviour
         Vector3 wishedDirection = new();
         for ( int i = 0; i < directions.Count; i++)
         {
-            Debug.Log(weights[i] + " " + directions[i]);
             wishedDirection += directions[i] * weights[i];
         }
 

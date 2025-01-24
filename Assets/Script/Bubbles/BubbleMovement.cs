@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class BubbleMovement : MonoBehaviour
     public float size;
 
     [SerializeField] AnimationCurve sizeSpeedRatio;
+
+    public Action Moved;
 
 
     private void Awake()
@@ -28,5 +31,6 @@ public class BubbleMovement : MonoBehaviour
         float acceleration = sizeSpeedRatio.Evaluate(size);
         angularVelocity += wishedDirection.normalized * acceleration;
         bubbleRigidbody.angularVelocity = angularVelocity;
+        Moved?.Invoke();
     }
 }

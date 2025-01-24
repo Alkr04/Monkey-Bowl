@@ -14,12 +14,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        HandleInput();
+        HandleInput(); 
     }
 
-    private void HandleInput()
+    public void HandleInput()
     {
-        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        float x = Input.GetAxisRaw("Horizontal");
+        float z = Input.GetAxisRaw("Vertical");
+
+        Vector3 direction = new(x, 0 ,z);
+        //direction -= x * Camera.main.transform.forward;
+        //direction += z * Camera.main.transform.right;
+
         wishedDirectionHandler.AddDirection(direction.normalized, weight);
     }
 }
