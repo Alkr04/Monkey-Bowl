@@ -10,6 +10,7 @@ public abstract class EnemyModeBase : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
+        Debug.Log("start");
         player = FindObjectOfType<PlayerMovement>();
         agent = GetComponentInParent<NavMeshAgent>();
     }
