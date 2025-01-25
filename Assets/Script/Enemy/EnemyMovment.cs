@@ -24,7 +24,7 @@ public class EnemyMovment : MonoBehaviour
 
     void Input()
     {
-        Debug.Log("input");
+        //Debug.Log("input");
         Vector3 direction = new Vector3((counterpart.position.z - transform.position.z), 0, -(counterpart.position.x - transform.position.x));
         Debug.DrawRay(transform.position, direction);
 
