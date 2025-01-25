@@ -21,7 +21,6 @@ public class Eating : MonoBehaviour
     {
         if (other.transform.root == transform.root || other.tag != eatableTag) { return; }
         Eating enemy = other.transform.root.GetComponentInChildren<Eating>();
-        Debug.Log(enemy, enemy);
         if (enemy != null)
         {
             if (enemy.size < size)
@@ -33,9 +32,10 @@ public class Eating : MonoBehaviour
         }
     }
 
-    private void SetSize()
+    public void SetSize()
     {
+        Debug.Log(size);
         if (BubbleMovement) { BubbleMovement.size = size; }
-        transform.localScale = transform.localScale * Mathf.Pow(size, 0.3333f);
+        transform.localScale = Vector3.one * Mathf.Pow(size, 0.3333f);
     }
 }
