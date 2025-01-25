@@ -42,7 +42,7 @@ public class Eating : MonoBehaviour
 
     private void SetSize()
     {
-        BubbleMovement.size = size;
+        if (BubbleMovement) { BubbleMovement.size = size; }
         transform.localScale = transform.localScale * size;
     }
 }

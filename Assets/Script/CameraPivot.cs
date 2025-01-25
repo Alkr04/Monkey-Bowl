@@ -11,6 +11,7 @@ public class CameraPivot : MonoBehaviour
     Transform bubbleTransform;
     Vector3 standardCamera;
     Vector2 lastMousePos;
+    Vector3 lookDirection;
     float dist;
 
     private void Awake()
@@ -28,7 +29,10 @@ public class CameraPivot : MonoBehaviour
         if (lastMousePos != default && Input.GetMouseButton(0))
         {
             Vector2 mouseDelta = mousePos - lastMousePos;
-            transform.Rotate(new Vector3(0, -mouseDelta.x, mouseDelta.y) * cameraSpeed);
+            lookDirection += new Vector3(0, mouseDelta.x, mouseDelta.y);
+            lookDirection.y = lookDirection.y % 360;
+            lookDirection.z = Mathf.Clamp(lookDirection.z, -20, 80);
+            transform.eulerAngles = lookDirection;
         }
 
         cameraTransform.LookAt(bubbleTransform.position);
