@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EnemyHunt : EnemyModeBase
 {
     [SerializeField] Transform mark = null;
+    List<GameObject> list;
     public override void phase()
     {
         if (mark != null)
@@ -13,7 +15,7 @@ public class EnemyHunt : EnemyModeBase
         }
         else
         {
-            Debug.Log("newMark");
+            //Debug.Log("newMark");
             NewMark();
 
         }
@@ -21,6 +23,8 @@ public class EnemyHunt : EnemyModeBase
 
     void NewMark()
     {
-        mark = Manager.Instance.eateble[Random.Range(0, Manager.Instance.eateble.Count)].transform;
+        list = Manager.Instance.eateble.Keys.ToList();
+        mark = list[Random.Range(0, Manager.Instance.eateble.Count)].transform;
+        //mark = Manager.Instance.eateble[gameObject];
     }
 }
