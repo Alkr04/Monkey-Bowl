@@ -6,6 +6,6 @@ public class EnemyChase : EnemyModeBase
 {
     public override void phase()
     {
-        agent.SetDestination(new Vector3(player.transform.position.x, 0, player.transform.position.z));
+        agent.SetDestination(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
     }
 }

@@ -8,7 +8,7 @@ public class EnemyScather : EnemyModeBase
     Vector3 target;
     private void Awake()
     {
-        GetRandomLocation();
+        agent.SetDestination(GetRandomLocation());
     }
     public void newdestenation()
     {
@@ -17,10 +17,10 @@ public class EnemyScather : EnemyModeBase
 
     public override void phase()
     {
-        agent.SetDestination(target);
         if(agent.remainingDistance <= 5)
         {
-            GetRandomLocation();
+            agent.SetDestination(GetRandomLocation());
+            
         }
     }
     Vector3 GetRandomLocation()
