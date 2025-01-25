@@ -13,6 +13,7 @@ public class BubbleAnimator : MonoBehaviour
 
     public Transform physicalBubble;
     public Transform visualBubble;
+    public Transform visualBubbleParent;
 
     Vector3 playerLookDirection = new Vector3(0,0,0);
     Vector3 lastLookLocation = new Vector3(0,0,0);
@@ -24,6 +25,7 @@ public class BubbleAnimator : MonoBehaviour
 
     private void Update() {
         visualBubble.rotation = physicalBubble.rotation;
+        visualBubbleParent.localScale = physicalBubble.localScale;
 
 
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S))
