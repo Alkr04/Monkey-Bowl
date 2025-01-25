@@ -8,7 +8,7 @@ public class BubbleMovement : MonoBehaviour
     Rigidbody bubbleRigidbody;
 
     public Vector3 wishedDirection;
-    public float size;
+    [HideInInspector] public float size;
 
     [SerializeField] AnimationCurve sizeSpeedRatio;
 
