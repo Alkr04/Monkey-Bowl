@@ -198,6 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb79ef67209d55f48ab6e5d3fbd1bca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bubbleMovement: {fileID: 0}
+  eatObject: {fileID: 4841683701593511536}
   size: 1
   eatableTag: bubble
 --- !u!1 &3658156145969970047
@@ -329,5 +331,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.08
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
