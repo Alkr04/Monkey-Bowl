@@ -12,9 +12,6 @@ public class BubbleMovement : MonoBehaviour
 
     [SerializeField] AnimationCurve sizeSpeedRatio;
 
-    public Action Moved;
-
-
     private void Awake()
     {
         bubbleRigidbody = GetComponent<Rigidbody>();
@@ -31,6 +28,6 @@ public class BubbleMovement : MonoBehaviour
         float acceleration = sizeSpeedRatio.Evaluate(size);
         angularVelocity += wishedDirection.normalized * acceleration;
         bubbleRigidbody.angularVelocity = angularVelocity;
-        Moved?.Invoke();
     }
+
 }
