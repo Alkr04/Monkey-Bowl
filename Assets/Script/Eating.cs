@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class Eating : MonoBehaviour
 {
+    BubbleMovement BubbleMovement;
+
+    private void Awake()
+    {
+        BubbleMovement = GetComponent<BubbleMovement>();
+    }
+
+    private void Start()
+    {
+        SetSize();
+    }
+
     public float size = 1;
     [SerializeField] Eating enemy;
     Collider test;
-    // Start is called before the first frame update
-    void Start()
-    {
-        test = GetComponent<Collider>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -33,9 +34,15 @@ public class Eating : MonoBehaviour
             if (enemy.size < size)
             {
                 size = size + enemy.size;
-                GetComponentInChildren<Transform>().localScale = transform.localScale * size;
-                Destroy(collision.gameObject);
+                SetSize();
+                Destroy(collision.transform.root.gameObject);
             }
         }
+    }
+
+    private void SetSize()
+    {
+        BubbleMovement.size = size;
+        transform.localScale = transform.localScale * size;
     }
 }
