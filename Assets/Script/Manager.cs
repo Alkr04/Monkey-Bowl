@@ -5,7 +5,7 @@ using UnityEngine;
 public class Manager : MonoBehaviour
 {
     public static Manager Instance;
-    public List<GameObject> eateble;
+    public Dictionary <GameObject, byte> eateble;
 
     // Start is called before the first frame update
     void Start()
@@ -14,7 +14,7 @@ public class Manager : MonoBehaviour
         GameObject[] game = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < game.Length; i++)
         {
-            eateble.Add(game[i]);
+            eateble.Add(game[i],1);
         }
     }
     void notDestroy()
