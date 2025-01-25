@@ -29,7 +29,7 @@ public class EnemyScather : EnemyModeBase
 
         // Pick the first indice of a random triangle in the nav mesh
         int t = Random.Range(0, navMeshData.indices.Length - 3);
-        Debug.Log(navMeshData.indices.Length);
+        //Debug.Log(navMeshData.indices.Length);
 
         // Select a random point on it
         Vector3 point = Vector3.Lerp(navMeshData.vertices[navMeshData.indices[t]], navMeshData.vertices[navMeshData.indices[t + 1]], Random.value);
