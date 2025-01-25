@@ -29,5 +29,4 @@ public class BubbleMovement : MonoBehaviour
         angularVelocity += wishedDirection * acceleration;
         bubbleRigidbody.angularVelocity = angularVelocity;
     }
-
 }

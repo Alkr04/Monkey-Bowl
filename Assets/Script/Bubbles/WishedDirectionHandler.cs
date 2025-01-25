@@ -32,5 +32,6 @@ public class WishedDirectionHandler : MonoBehaviour
 
         bubbleMovement.wishedDirection = wishedDirection;
         directions.Clear();
+
     }
 }
