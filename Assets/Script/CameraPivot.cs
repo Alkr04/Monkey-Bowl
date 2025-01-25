@@ -36,15 +36,16 @@ public class CameraPivot : MonoBehaviour
         }
 
         cameraTransform.LookAt(bubbleTransform.position);
-        if (Physics.Raycast(transform.position, cameraTransform.position - transform.position, out RaycastHit hit, dist, layerMask))
+        Vector3 direction = cameraTransform.position - transform.position;
+        if (Physics.Raycast(transform.position, direction, out RaycastHit hit, dist, layerMask))
         {
-            cameraTransform.position = hit.point;
+            cameraTransform.position = hit.point - direction * 0.1f;
         }
         else
         {
             cameraTransform.localPosition = standardCamera;
         }
-        Debug.DrawRay(transform.position, cameraTransform.position - transform.position, Color.red);
+        Debug.DrawRay(transform.position, direction, Color.red);
 
 
         lastMousePos = mousePos;

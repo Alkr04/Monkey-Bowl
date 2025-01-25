@@ -5,6 +5,8 @@ using UnityEngine;
 public class Eating : MonoBehaviour
 {
     BubbleMovement BubbleMovement;
+    public float size;
+    public string eatableTag;
 
     private void Awake()
     {
@@ -15,27 +17,18 @@ public class Eating : MonoBehaviour
     {
         SetSize();
     }
-
-    public float size = 1;
-    [SerializeField] Eating enemy;
-    Collider test;
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "bubble")
+        if (other.transform.root == transform.root || other.tag != eatableTag) { return; }
+        Eating enemy = other.transform.root.GetComponentInChildren<Eating>();
+        Debug.Log(enemy, enemy);
+        if (enemy != null)
         {
-            Physics.IgnoreCollision(collision.collider, test);
-        }
-
-        if (collision.gameObject.GetComponent<Eating>() != null)
-        {
-            enemy = collision.gameObject.GetComponent<Eating>();
-            Debug.Log(enemy);
             if (enemy.size < size)
             {
                 size = size + enemy.size;
                 SetSize();
-                Destroy(collision.transform.root.gameObject);
+                Destroy(other.transform.root.gameObject);
             }
         }
     }
@@ -43,6 +36,6 @@ public class Eating : MonoBehaviour
     private void SetSize()
     {
         if (BubbleMovement) { BubbleMovement.size = size; }
-        transform.localScale = transform.localScale * size;
+        transform.localScale = transform.localScale * Mathf.Pow(size, 0.3333f);
     }
 }
