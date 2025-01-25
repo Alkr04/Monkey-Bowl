@@ -36,6 +36,6 @@ public class Eating : MonoBehaviour
     private void SetSize()
     {
         if (BubbleMovement) { BubbleMovement.size = size; }
-        transform.localScale = transform.localScale * size;
+        transform.localScale = transform.localScale * Mathf.Pow(size, 0.3333f);
     }
 }
