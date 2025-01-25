@@ -26,7 +26,7 @@ public class BubbleMovement : MonoBehaviour
     {
         Vector3 angularVelocity =  bubbleRigidbody.angularVelocity;
         float acceleration = sizeSpeedRatio.Evaluate(size);
-        angularVelocity += wishedDirection.normalized * acceleration;
+        angularVelocity += wishedDirection * acceleration;
         bubbleRigidbody.angularVelocity = angularVelocity;
     }
 
