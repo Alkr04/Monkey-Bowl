@@ -35,6 +35,8 @@ public class BubbleSplit : MonoBehaviour
 
         otherEating.size = eating.size;
         otherEating.SetSize();
+        otherEating.wasSplited = true;
+        otherEating.timeCreated = Time.time;
         otherRigidBody.velocity = camraForward * launchSpeed;
     }
 

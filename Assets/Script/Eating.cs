@@ -6,9 +6,14 @@ using UnityEngine;
 public class Eating : MonoBehaviour
 {
     [HideInInspector] public BubbleMovement bubbleMovement;
+    [HideInInspector] public bool wasSplited = false;
+    [HideInInspector] public float timeCreated;
     public float size;
     public string eatableTag;
 
+    [SerializeField] Transform eatObject;
+    [SerializeField] float timeToBeEatable = 1;
+    
     public Action popped;
 
     private void Awake()
@@ -23,11 +28,12 @@ public class Eating : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         if (other.transform.parent.parent == transform.parent || other.tag != eatableTag) { return; }
-
         Eating enemy = other.transform.parent.parent.GetComponentInChildren<Eating>();
+        if (wasSplited && !enemy.wasSplited) { return; }
+
         if (enemy != null)
         {
-            if (enemy.size < size || enemy.bubbleMovement == null)
+            if ((enemy.wasSplited && enemy.timeCreated < Time.time - timeToBeEatable) || enemy.size < size || enemy.bubbleMovement == null)
             {
                 size = size + enemy.size;
                 SetSize();
@@ -39,7 +45,9 @@ public class Eating : MonoBehaviour
     public void SetSize()
     {
         if (bubbleMovement) { bubbleMovement.size = size; }
-        transform.localScale = Vector3.one * Mathf.Pow(size, 0.3333f);
+        Vector3 scale = Vector3.one * Mathf.Pow(size, 0.3333f);
+        transform.localScale = scale;
+        eatObject.localScale = scale * 0.7f;
     }
 
     private void OnDestroy()
