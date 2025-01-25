@@ -22,9 +22,8 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
-        Vector3 direction = new(x, 0 ,z);
-        //direction -= x * Camera.main.transform.forward;
-        //direction += z * Camera.main.transform.right;
+        Vector3 direction = -x * Camera.main.transform.forward;
+        direction += z * Camera.main.transform.right;
 
         wishedDirectionHandler.AddDirection(direction.normalized, weight);
     }
