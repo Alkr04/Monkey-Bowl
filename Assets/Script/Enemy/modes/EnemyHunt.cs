@@ -11,7 +11,7 @@ public class EnemyHunt : EnemyModeBase
     {
         if (mark != null)
         {
-            agent.SetDestination(mark.position);
+            agent.SetDestination(new Vector3(mark.position.x, transform.position.y, mark.position.z));
         }
         else
         {
@@ -25,6 +25,13 @@ public class EnemyHunt : EnemyModeBase
     {
         list = Manager.Instance.eateble.Keys.ToList();
         mark = list[Random.Range(0, Manager.Instance.eateble.Count)].transform;
+        if (mark == transform.root.GetChild(0)) { StartCoroutine(DelayedNewMark()); }
         //mark = Manager.Instance.eateble[gameObject];
+    }
+
+    IEnumerator DelayedNewMark()
+    {
+        yield return new WaitForSeconds(1);
+        NewMark();
     }
 }

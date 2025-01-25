@@ -199,9 +199,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleMovement: {fileID: 0}
-  eatObject: {fileID: 4841683701593511536}
+  wasSplited: 0
+  timeCreated: 0
+  agentsHolder: {fileID: 5352086438371869721}
   size: 1
   eatableTag: bubble
+  eatObject: {fileID: 4841683701593511536}
+  timeToBeEatable: 1
+--- !u!1 &2502001845334899624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5352086438371869721}
+  m_Layer: 0
+  m_Name: Agents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5352086438371869721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502001845334899624}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 205291747876845850}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3658156145969970047
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +313,7 @@ Transform:
   m_Children:
   - {fileID: 6908822363106918362}
   - {fileID: 8803169238857917226}
+  - {fileID: 5352086438371869721}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8680129061705183398

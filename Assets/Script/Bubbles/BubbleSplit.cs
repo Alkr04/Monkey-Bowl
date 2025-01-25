@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BubbleSplit : MonoBehaviour
@@ -37,6 +38,7 @@ public class BubbleSplit : MonoBehaviour
         otherEating.SetSize();
         otherEating.wasSplited = true;
         otherEating.timeCreated = Time.time;
+        otherEating.transform.tag = "Enemy";
         otherRigidBody.velocity = camraForward * launchSpeed;
     }
 
@@ -46,9 +48,20 @@ public class BubbleSplit : MonoBehaviour
         eating.SetSize();
     }
 
-    private EnemyMode[] getOtherHalfOfAvatars()
+    private void getOtherHalfOfAvatars(Vector3 splitDirection, GameObject other, Eating eating)
     {
-        // return the avatars
-        return null;
+        EnemyMovment[] allEnemys = GetComponents<EnemyMovment>();
+        foreach (EnemyMovment item in allEnemys)
+        {
+            if (Vector3.Dot(item.lastWishedDirection, splitDirection) > 0.5f) 
+            {
+                var bubbleMovement = other.GetComponent<BubbleMovement>();
+                var newMove = bubbleMovement.transform.AddComponent<EnemyMovment>();
+                newMove.weigth = item.weigth;
+                newMove.counterpart = item.counterpart;
+                newMove.wishedDirection = bubbleMovement.GetComponent<WishedDirectionHandler>();
+                item.counterpart.transform.SetParent(eating.agentsHolder.transform, true);
+            }
+        }
     }
 }

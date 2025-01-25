@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Eating : MonoBehaviour
@@ -8,12 +9,13 @@ public class Eating : MonoBehaviour
     [HideInInspector] public BubbleMovement bubbleMovement;
     [HideInInspector] public bool wasSplited = false;
     [HideInInspector] public float timeCreated;
+    public Transform agentsHolder;
     public float size;
     public string eatableTag;
 
     [SerializeField] Transform eatObject;
     [SerializeField] float timeToBeEatable = 1;
-    
+
     public Action popped;
 
     private void Awake()
@@ -35,8 +37,31 @@ public class Eating : MonoBehaviour
         {
             if ((enemy.wasSplited && enemy.timeCreated < Time.time - timeToBeEatable) || enemy.size < size || enemy.bubbleMovement == null)
             {
+                if (Manager.Instance.eateble.ContainsKey(enemy.gameObject)) { Manager.Instance.eateble.Remove(enemy.gameObject); }
                 size = size + enemy.size;
                 SetSize();
+                if (agentsHolder != null && enemy.agentsHolder != null)
+                {
+                    EnemyMode[] modes = enemy.agentsHolder.GetComponentsInChildren<EnemyMode>();
+                    EnemyMovment[] enemyMovments = enemy.bubbleMovement.GetComponents<EnemyMovment>();
+                    if (modes != null)
+                    {
+                        Debug.Log(modes.Length);
+                        foreach (EnemyMode mode in modes)
+                        {
+                            Debug.Log(mode, mode);
+                            mode.transform.SetParent(agentsHolder, true);
+                        }
+                        WishedDirectionHandler wishedDirectionHandler = bubbleMovement.GetComponent<WishedDirectionHandler>();
+                        for (int i = 0; i < enemyMovments.Length; i++)
+                        {
+                            var newMove = bubbleMovement.transform.AddComponent<EnemyMovment>();
+                            newMove.weigth = enemyMovments[i].weigth;
+                            newMove.counterpart = enemyMovments[i].counterpart;
+                            newMove.wishedDirection = wishedDirectionHandler;
+                        }
+                    }
+                }
                 Destroy(other.transform.parent.parent.gameObject);
             }
         }
