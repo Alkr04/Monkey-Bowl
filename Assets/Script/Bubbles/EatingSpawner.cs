@@ -23,6 +23,7 @@ public class EatingSpawner : MonoBehaviour
     IEnumerator SpawnCicle()
     {
         yield return new WaitForSeconds(timeToSpawnAttempt);
+
         SpawnBubble();
         StartCoroutine(SpawnCicle());
     }

@@ -6,10 +6,12 @@ using UnityEngine.AI;
 public class EnemyScather : EnemyModeBase
 {
     Vector3 target;
-    private void Awake()
+    private void Start()
     {
+        base.Start();
         agent.SetDestination(GetRandomLocation());
     }
+
     public void newdestenation()
     {
         target = new Vector3(Random.Range(0, 4), 0, Random.Range(0, 4));
