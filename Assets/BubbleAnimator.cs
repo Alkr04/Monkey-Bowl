@@ -23,6 +23,7 @@ public class BubbleAnimator : MonoBehaviour
         movement = GetComponent<BubbleMovement>();
     }
 
+
     private void Update() {
         visualBubble.rotation = physicalBubble.rotation;
         visualBubbleParent.localScale = physicalBubble.localScale;
