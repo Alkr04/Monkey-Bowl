@@ -11,6 +11,7 @@ public class MenueManager : MonoBehaviour
     public GameObject name;
     public GameObject menue;
     public GameObject restart;
+    public GameObject start;
     private void Start()
     {
         Time.timeScale = 0;
@@ -30,6 +31,7 @@ public class MenueManager : MonoBehaviour
         name.SetActive(true);
         menue.SetActive(true);
         restart.SetActive(true);
+        start.SetActive(false);
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
