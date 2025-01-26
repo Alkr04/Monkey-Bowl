@@ -15,6 +15,7 @@ public class Eating : MonoBehaviour
 
     [SerializeField] Transform eatObject;
     [SerializeField] float timeToBeEatable = 1;
+    [SerializeField] AudioClip[] audioClips;
 
     public Action popped;
 
@@ -29,17 +30,19 @@ public class Eating : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
+        if (other == null || other.transform == null || other.transform.parent == null) { return; }
         if (other.transform.parent.parent == transform.parent || other.tag != eatableTag) { return; }
         Eating enemy = other.transform.parent.parent.GetComponentInChildren<Eating>();
-        if (wasSplited && !enemy.wasSplited) { return; }
+        if ((wasSplited && agentsHolder.childCount < 1) && !enemy.wasSplited) { return; }
 
         if (enemy != null)
         {
-            if ((enemy.wasSplited && enemy.timeCreated < Time.time - timeToBeEatable) || enemy.size < size || enemy.bubbleMovement == null)
+            if (((enemy.wasSplited && enemy.agentsHolder.childCount < 1) && enemy.timeCreated < Time.time - timeToBeEatable) || enemy.size < size || enemy.bubbleMovement == null)
             {
                 if (Manager.Instance.eateble.ContainsKey(enemy.gameObject)) { Manager.Instance.eateble.Remove(enemy.gameObject); }
                 size = size + enemy.size;
                 SetSize();
+                SoundHolder.Instance.PlaySound(SoundHolder.soundCatagory.pop, transform.position, true);
                 if (agentsHolder != null && enemy.agentsHolder != null)
                 {
                     EnemyMode[] modes = enemy.agentsHolder.GetComponentsInChildren<EnemyMode>();

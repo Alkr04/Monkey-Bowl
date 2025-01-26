@@ -24,7 +24,8 @@ public class EnemyHunt : EnemyModeBase
     void NewMark()
     {
         list = Manager.Instance.eateble.Keys.ToList();
-        mark = list[Random.Range(0, Manager.Instance.eateble.Count)].transform;
+        int i = Random.Range(0, Manager.Instance.eateble.Count);
+        if (list.Count < i) { mark = list[i].transform; }
         //mark = Manager.Instance.eateble[gameObject];
     }
 }
