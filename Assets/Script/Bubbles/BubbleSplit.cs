@@ -41,6 +41,7 @@ public class BubbleSplit : MonoBehaviour
         otherEating.transform.tag = "Enemy";
         Manager.Instance.AddToEatable(otherEating.gameObject);
         otherRigidBody.velocity = camraForward * launchSpeed;
+        SoundHolder.Instance.PlaySound(SoundHolder.soundCatagory.pop, transform.position, true);
 
         StartCoroutine(GetOtherHalfOfAvatars(camraForward, other, otherEating));
     }
@@ -55,17 +56,18 @@ public class BubbleSplit : MonoBehaviour
     {
         yield return new WaitForFixedUpdate();
         EnemyMovment[] allEnemys = GetComponents<EnemyMovment>();
-        foreach (EnemyMovment item in allEnemys)
+        int random = Random.Range(0, allEnemys.Length);
+        for (int i = 0; i < allEnemys.Length; i++)
         {
-            if (Vector3.Dot(new Vector3(-item.lastWishedDirection.z, item.lastWishedDirection.y, item.lastWishedDirection.x), splitDirection) > 0)
+            if (i == random)
             {
                 var bubbleMovement = other.GetComponentInChildren<BubbleMovement>();
                 var newMove = bubbleMovement.gameObject.AddComponent<EnemyMovment>();
-                newMove.weigth = item.weigth;
-                newMove.counterpart = item.counterpart;
+                newMove.weigth = allEnemys[i].weigth;
+                newMove.counterpart = allEnemys[i].counterpart;
                 newMove.wishedDirection = bubbleMovement.GetComponent<WishedDirectionHandler>();
-                item.counterpart.transform.SetParent(eating.agentsHolder.transform, true);
-                Destroy(item);
+                allEnemys[i].counterpart.transform.SetParent(eating.agentsHolder.transform, true);
+                Destroy(allEnemys[i]);
             }
         }
     }

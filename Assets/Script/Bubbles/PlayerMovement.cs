@@ -27,4 +27,9 @@ public class PlayerMovement : MonoBehaviour
 
         wishedDirectionHandler.AddDirection(direction.normalized, weight);
     }
+
+    private void OnDestroy()
+    {
+        DeathZone.Instance?.GameOver();
+    }
 }

@@ -29,4 +29,14 @@ public class BubbleMovement : MonoBehaviour
         angularVelocity += wishedDirection * acceleration;
         bubbleRigidbody.angularVelocity = angularVelocity;
     }
+
+    private void OnDisable()
+    {
+        Manager.Instance.eateble.Remove(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        SoundHolder.Instance.PlaySound(SoundHolder.soundCatagory.bounce, transform.position, true);
+    }
 }

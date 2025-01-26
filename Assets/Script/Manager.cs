@@ -7,6 +7,7 @@ public class Manager : MonoBehaviour
     public static Manager Instance;
     public Dictionary<GameObject, byte> eateble = new();
     public GameObject[] game;
+    public Dictionary<GameObject, byte> Enemys = new();
 
     private void Awake()
     {

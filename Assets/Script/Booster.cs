@@ -19,6 +19,7 @@ public class Booster : MonoBehaviour
 
             rb.AddForce(targetDir * boostValue, ForceMode.Impulse);
             Debug.Log($"Add force to {other.gameObject.name} with a value of {boostValue} in the direction of {targetDir}");
+            SoundHolder.Instance.PlaySound(SoundHolder.soundCatagory.bumper, transform.position, true);
         }
     }
 }

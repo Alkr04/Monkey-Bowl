@@ -17,6 +17,11 @@ public class EnemyMode : MonoBehaviour
         StartCoroutine(timer());
     }
 
+    private void Start()
+    {
+        Manager.Instance.Enemys.Add(gameObject, 1);
+    }
+
     private void Update()
     {
         mode.phase();
@@ -34,5 +39,10 @@ public class EnemyMode : MonoBehaviour
             mode = list[curentMode % list.Count];
 
         }
+    }
+
+    private void OnDisable()
+    {
+        ScoreTracker.Instance?.EnemyDead();
     }
 }
