@@ -39,6 +39,7 @@ public class BubbleSplit : MonoBehaviour
         otherEating.wasSplited = true;
         otherEating.timeCreated = Time.time;
         otherEating.transform.tag = "Enemy";
+        Manager.Instance.AddToEatable(otherEating.gameObject);
         otherRigidBody.velocity = camraForward * launchSpeed;
 
         StartCoroutine(GetOtherHalfOfAvatars(camraForward, other, otherEating));

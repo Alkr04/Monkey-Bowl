@@ -13,7 +13,7 @@ public class EnemyMode : MonoBehaviour
 
     private void Awake()
     {
-        mode = list[curentMode];
+        mode = list[curentMode = Random.Range(0, list.Count)];
         StartCoroutine(timer());
     }
 
@@ -30,7 +30,7 @@ public class EnemyMode : MonoBehaviour
             time = Random.Range(minTime, maxTime);
 
             yield return new WaitForSeconds(time);
-            curentMode++;
+            curentMode = Random.Range(0, list.Count);
             mode = list[curentMode % list.Count];
 
         }

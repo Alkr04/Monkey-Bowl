@@ -16,7 +16,7 @@ public class EnemyMovment : MonoBehaviour
     {
         wishedDirection = GetComponent<WishedDirectionHandler>();
         try { counterpart = transform.parent.GetComponentInChildren<EnemyMode>().transform; }
-        catch { Debug.Log("HERE"); }
+        catch { } // :p
     }
 
     // Update is called once per frame

@@ -18,6 +18,7 @@ public class Respawner : MonoBehaviour
     {
         eating = Instantiate(bubble, transform.transform).GetComponentInChildren<Eating>();
         eating.transform.tag = "Enemy";
+        Manager.Instance.AddToEatable(eating.gameObject);
         eating.popped += Respawn;
     }
 
