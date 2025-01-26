@@ -68,6 +68,7 @@ public class BubbleSplit : MonoBehaviour
                 newMove.wishedDirection = bubbleMovement.GetComponent<WishedDirectionHandler>();
                 allEnemys[i].counterpart.transform.SetParent(eating.agentsHolder.transform, true);
                 Destroy(allEnemys[i]);
+                Counter.Instance.SetCount(allEnemys.Length - 2);
             }
         }
     }
