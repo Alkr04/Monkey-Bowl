@@ -18,10 +18,12 @@ public class Eating : MonoBehaviour
     [SerializeField] AudioClip[] audioClips;
 
     public Action popped;
+    bool isPlayer;
 
     private void Awake()
     {
         bubbleMovement = GetComponent<BubbleMovement>();
+        isPlayer = TryGetComponent(out PlayerMovement _);
     }
 
     private void Start()
@@ -52,6 +54,7 @@ public class Eating : MonoBehaviour
                         foreach (EnemyMode mode in modes)
                         {
                             mode.transform.SetParent(agentsHolder, true);
+                            if (isPlayer) { Counter.Instance.SetCount(agentsHolder.childCount); }
                         }
                         WishedDirectionHandler wishedDirectionHandler = bubbleMovement.GetComponent<WishedDirectionHandler>();
                         for (int i = 0; i < enemyMovments.Length; i++)

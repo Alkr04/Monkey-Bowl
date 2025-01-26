@@ -37,7 +37,7 @@ public class BubbleAnimator : MonoBehaviour
             Vector3 rotatedLookLocation = Quaternion.Euler(0, 270, 0) * lastLookLocation;
 
             playerPieceTransform.LookAt(playerAnimator.transform.position + rotatedLookLocation);
-            Debug.Log($"playerRotation: {playerAnimator.transform.rotation}");
+            //Debug.Log($"playerRotation: {playerAnimator.transform.rotation}");
 
             playerAnimator.SetBool($"IsJumping", true);
         }
