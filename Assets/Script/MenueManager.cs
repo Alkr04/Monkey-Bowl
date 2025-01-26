@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class MenueManager : MonoBehaviour
 {
-    public Camera cam1;
-    public Camera cam2;
+    public GameObject cam1;
+    public GameObject cam2;
     public GameObject name;
     public GameObject menue;
     public GameObject restart;
@@ -23,8 +24,9 @@ public class MenueManager : MonoBehaviour
     }
     public void Pause()
     {
-        cam1.enabled = true;
-        cam2.enabled = false;
+        //cam1.enabled = true;
+        //cam2.enabled = false;
+         //GetComponent<CinemachineVirtualCamera>().Priority = -100;
         name.SetActive(true);
         menue.SetActive(true);
         restart.SetActive(true);
@@ -32,8 +34,9 @@ public class MenueManager : MonoBehaviour
     }
     public void UnPause()
     {
-        cam1.enabled = false;
-        cam2.enabled = true;
+        cam1.gameObject.SetActive(false);
+        //cam1.enabled = false;
+        //cam2.enabled = true;
         Time.timeScale = 1;
     }
     public void Exit()
