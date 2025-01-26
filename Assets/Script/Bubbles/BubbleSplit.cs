@@ -40,6 +40,8 @@ public class BubbleSplit : MonoBehaviour
         otherEating.timeCreated = Time.time;
         otherEating.transform.tag = "Enemy";
         otherRigidBody.velocity = camraForward * launchSpeed;
+
+        StartCoroutine(GetOtherHalfOfAvatars(camraForward, other, otherEating));
     }
 
     private void HalvSize(Eating eating)
@@ -48,19 +50,21 @@ public class BubbleSplit : MonoBehaviour
         eating.SetSize();
     }
 
-    private void getOtherHalfOfAvatars(Vector3 splitDirection, GameObject other, Eating eating)
+    IEnumerator GetOtherHalfOfAvatars(Vector3 splitDirection, GameObject other, Eating eating)
     {
+        yield return new WaitForFixedUpdate();
         EnemyMovment[] allEnemys = GetComponents<EnemyMovment>();
         foreach (EnemyMovment item in allEnemys)
         {
-            if (Vector3.Dot(item.lastWishedDirection, splitDirection) > 0.5f) 
+            if (Vector3.Dot(new Vector3(-item.lastWishedDirection.z, item.lastWishedDirection.y, item.lastWishedDirection.x), splitDirection) > 0)
             {
-                var bubbleMovement = other.GetComponent<BubbleMovement>();
-                var newMove = bubbleMovement.transform.AddComponent<EnemyMovment>();
+                var bubbleMovement = other.GetComponentInChildren<BubbleMovement>();
+                var newMove = bubbleMovement.gameObject.AddComponent<EnemyMovment>();
                 newMove.weigth = item.weigth;
                 newMove.counterpart = item.counterpart;
                 newMove.wishedDirection = bubbleMovement.GetComponent<WishedDirectionHandler>();
                 item.counterpart.transform.SetParent(eating.agentsHolder.transform, true);
+                Destroy(item);
             }
         }
     }

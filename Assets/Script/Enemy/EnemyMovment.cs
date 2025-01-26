@@ -15,7 +15,8 @@ public class EnemyMovment : MonoBehaviour
     void Awake()
     {
         wishedDirection = GetComponent<WishedDirectionHandler>();
-        counterpart = transform.parent.GetComponentInChildren<EnemyMode>().transform;
+        try { counterpart = transform.parent.GetComponentInChildren<EnemyMode>().transform; }
+        catch { Debug.Log("HERE"); }
     }
 
     // Update is called once per frame

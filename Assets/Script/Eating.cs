@@ -46,10 +46,8 @@ public class Eating : MonoBehaviour
                     EnemyMovment[] enemyMovments = enemy.bubbleMovement.GetComponents<EnemyMovment>();
                     if (modes != null)
                     {
-                        Debug.Log(modes.Length);
                         foreach (EnemyMode mode in modes)
                         {
-                            Debug.Log(mode, mode);
                             mode.transform.SetParent(agentsHolder, true);
                         }
                         WishedDirectionHandler wishedDirectionHandler = bubbleMovement.GetComponent<WishedDirectionHandler>();
