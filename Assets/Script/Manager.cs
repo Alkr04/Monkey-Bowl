@@ -5,18 +5,21 @@ using UnityEngine;
 public class Manager : MonoBehaviour
 {
     public static Manager Instance;
-    public Dictionary <GameObject, byte> eateble = new ();
+    public Dictionary<GameObject, byte> eateble = new();
     public GameObject[] game;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         notDestroy();
+    }
+
+    void Start()
+    {
         game = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < game.Length; i++)
         {
             //Debug.Log(eateble);
-            eateble.Add(game[i],1);
+            eateble.Add(game[i], 1);
             //Debug.Log(eateble.Count);
         }
     }
@@ -30,6 +33,14 @@ public class Manager : MonoBehaviour
         {
             Instance = this;
         }
-        DontDestroyOnLoad(gameObject);
+    }
+
+    public IEnumerator AddToEatable(GameObject gameObject)
+    {
+        yield return new WaitForFixedUpdate();
+        if (gameObject != null)
+        {
+            eateble.Add(gameObject, 1);
+        }
     }
 }

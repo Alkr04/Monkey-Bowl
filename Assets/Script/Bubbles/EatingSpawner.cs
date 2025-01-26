@@ -41,8 +41,11 @@ public class EatingSpawner : MonoBehaviour
 
             temp = hit.point;
 
-            GameObject bubble = Instantiate(eatingBubbleBase, hit.point, Quaternion.identity);
-            bubble.transform.position += new Vector3(0, Mathf.Pow(bubble.GetComponentInChildren<Eating>().size, 0.3333f) / 2, 0);
+            GameObject bubble = Instantiate(eatingBubbleBase, hit.point, Quaternion.identity, transform);
+            Eating newEating = bubble.GetComponentInChildren<Eating>();
+            newEating.transform.tag = "Enemy";
+            Manager.Instance.AddToEatable(newEating.gameObject);
+            bubble.transform.position += new Vector3(0, Mathf.Pow(newEating.size, 0.3333f) / 2, 0);
         }
     }
 

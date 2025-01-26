@@ -11,6 +11,8 @@ public class WishedDirectionHandler : MonoBehaviour
 
     WishedDirectionHandler instance;
 
+    float totalWeight = 0;
+
     private void Awake()
     {
         bubbleMovement = GetComponent<BubbleMovement>();
@@ -24,14 +26,16 @@ public class WishedDirectionHandler : MonoBehaviour
 
     private void LateUpdate()
     {
+        totalWeight = 0;
+        foreach (float weight in weights) { totalWeight += weight; }
         Vector3 wishedDirection = new();
         for ( int i = 0; i < directions.Count; i++)
         {
-            wishedDirection += directions[i] * weights[i];
+            wishedDirection += directions[i] * weights[i] / totalWeight;
         }
 
         bubbleMovement.wishedDirection = wishedDirection;
         directions.Clear();
-
+        weights.Clear();
     }
 }

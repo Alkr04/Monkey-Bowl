@@ -11,7 +11,7 @@ public class EnemyHunt : EnemyModeBase
     {
         if (mark != null)
         {
-            agent.SetDestination(mark.position);
+            agent.SetDestination(new Vector3(mark.position.x, transform.position.y, mark.position.z));
         }
         else
         {

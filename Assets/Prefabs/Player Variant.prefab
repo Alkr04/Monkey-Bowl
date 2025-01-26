@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8863101229118902983, guid: 8826c2d49ee73f245a3ca7725c24a3e6,
+        type: 3}
+      propertyPath: agentsHolder
+      value: 
+      objectReference: {fileID: 3891073269113758934}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -76,6 +81,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4263273286992536210}
   m_SourcePrefab: {fileID: 100100000, guid: 8826c2d49ee73f245a3ca7725c24a3e6, type: 3}
+--- !u!4 &3891073269113758934 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5352086438371869721, guid: 8826c2d49ee73f245a3ca7725c24a3e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 9203581684784324815}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8454407635579587581 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 787468252527602482, guid: 8826c2d49ee73f245a3ca7725c24a3e6,
