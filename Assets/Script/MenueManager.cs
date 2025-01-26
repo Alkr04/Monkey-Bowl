@@ -29,12 +29,16 @@ public class MenueManager : MonoBehaviour
         menue.SetActive(true);
         restart.SetActive(true);
         Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     public void UnPause()
     {
         cam1.enabled = false;
         cam2.enabled = true;
         Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     public void Exit()
     {
