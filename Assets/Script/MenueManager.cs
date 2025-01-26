@@ -12,19 +12,28 @@ public class MenueManager : MonoBehaviour
     public GameObject menue;
     public GameObject restart;
     public GameObject start;
+    bool ispaused = true;
     private void Start()
     {
         Time.timeScale = 0;
     }
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause();
+            if (!ispaused)
+            {
+                Pause();
+            }
+            else if (ispaused)
+            {
+                UnPause();
+            }
         }
     }
     public void Pause()
     {
+        ispaused = true;
         //cam1.enabled = true;
         //cam2.enabled = false;
          //GetComponent<CinemachineVirtualCamera>().Priority = -100;
@@ -38,7 +47,10 @@ public class MenueManager : MonoBehaviour
     }
     public void UnPause()
     {
+        ispaused = false;
         cam1.gameObject.SetActive(false);
+        name.SetActive(false);
+        menue.SetActive(false);
         //cam1.enabled = false;
         //cam2.enabled = true;
         Time.timeScale = 1;
