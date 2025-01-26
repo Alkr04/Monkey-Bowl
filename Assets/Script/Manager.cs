@@ -33,7 +33,6 @@ public class Manager : MonoBehaviour
         {
             Instance = this;
         }
-        DontDestroyOnLoad(gameObject);
     }
 
     public IEnumerator AddToEatable(GameObject gameObject)
