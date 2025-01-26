@@ -6,7 +6,7 @@ using UnityEngine.Video;
 
 public class BubbleAnimator : MonoBehaviour
 {
-
+    public bool isEnemy = false;
     public Animator bubbleDeformAnimator;
     public Animator playerAnimator;
     public Transform playerPieceTransform;
